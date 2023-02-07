@@ -73,6 +73,7 @@ def get_jobs_lists(search_url, name):
             '公司规模': [],
             '活跃度信息': [],
             '位置': [],
+            '职位描述': [],
         }
         for li in lis:
             job_name = li.find_element(By.CLASS_NAME, 'job-name').text
@@ -100,6 +101,8 @@ def get_jobs_lists(search_url, name):
 
             job_boss_info = browser.find_element(By.XPATH, '//*[@class="job-boss-info"]').text
             # print('job_boss_info', job_boss_info)
+            job_sec_text = browser.find_element(By.XPATH, '//*[@class="job-sec-text"]').text
+            print('job_sec_text', job_sec_text)
             print(f"[公司]: {company_name} [岗位]: {job_name} [薪资]: {salary} [福利]: {welfare} [经验要求]: {experience} [学历要求]: {degree} [加分项目]: {excess} [所属行业]: {industry} [公司规模]: {company_size} [活跃度信息]: {job_boss_info} [位置]: {addr}")
             info['公司'].append(company_name)
             info['岗位'].append(job_name)
@@ -112,6 +115,7 @@ def get_jobs_lists(search_url, name):
             info['公司规模'].append(company_size)
             info['活跃度信息'].append(job_boss_info)
             info['位置'].append(addr)
+            info['职位描述'].append(job_sec_text)
             if is_childpage(browser) == True:
                 # 关闭子网页
                 browser.close()
@@ -139,6 +143,7 @@ def save_data(name: str, new_data: dict):
             '公司规模': [],
             '活跃度信息': [],
             '位置': [],
+            '职位描述': [],
 
         })
     save = pd.concat([data, new_data], axis=0)
