@@ -60,7 +60,7 @@ def get_jobs_lists(search_url, name):
         url = f"{search_url}&page={page + 1}"
         browser.get(url)
         sleep(3)
-        lis = browser.find_elements(By.XPATH, '//*[@id="wrap"]/div[2]/div[2]/div/div[1]/div[1]/ul/li')
+        lis = browser.find_elements(By.XPATH, "//div[contains(@class,'search-job-result')]/ul/li")
         info = {
             '公司': [],
             '岗位': [],
